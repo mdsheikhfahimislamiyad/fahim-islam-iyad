@@ -1,0 +1,86 @@
+:root{ --bg:#000; --glass:rgba(255,255,255,.05); --border:rgba(255,255,255,.12); }
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:#fff;overflow-x:hidden}
+#particles{position:fixed;inset:0;z-index:0}
+section,footer{position:relative;z-index:1}
+.hidden{display:none}
+
+/* RGB animation */
+@keyframes rgb{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+.gradient-text{background:linear-gradient(90deg,#ff0080,#00f0ff,#a020f0,#ff0080);
+  background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:slide 6s linear infinite}
+@keyframes slide{to{background-position:300%}}
+
+/* Glass */
+.glass-card{background:var(--glass);backdrop-filter:blur(14px);
+  border:1px solid var(--border);border-radius:18px;padding:24px;
+  box-shadow:0 0 25px rgba(0,240,255,.15);transition:.4s}
+.glass-card:hover{box-shadow:0 0 40px rgba(255,0,128,.4);transform:translateY(-6px)}
+
+/* RGB button */
+.btn{display:inline-block;padding:14px 28px;border-radius:50px;color:#fff;
+  text-decoration:none;cursor:pointer;background:var(--glass);
+  backdrop-filter:blur(10px);border:2px solid transparent;position:relative;
+  overflow:hidden;transition:.4s;font-weight:600}
+.rgb-btn{border-image:linear-gradient(90deg,#ff0080,#00f0ff,#a020f0)1;
+  box-shadow:0 0 20px rgba(0,240,255,.4)}
+.rgb-btn:hover{box-shadow:0 0 35px #ff0080,0 0 50px #00f0ff;transform:scale(1.06)}
+.btn.small{padding:8px 16px;font-size:.85rem;margin:4px}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);
+  transform:scale(0);animation:rip .6s linear;pointer-events:none}
+@keyframes rip{to{transform:scale(4);opacity:0}}
+
+/* Entry */
+#entry{height:100vh;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;animation:fade 1.5s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.logo{position:absolute;top:24px;left:24px;width:70px;
+  filter:drop-shadow(0 0 12px #00f0ff);animation:rgb 4s linear infinite}
+.glow-text{font-size:clamp(1.8rem,5vw,3.5rem);text-align:center;margin-bottom:30px;
+  text-shadow:0 0 12px #00f0ff,0 0 24px #ff0080}
+
+/* Hero */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:space-around;
+  flex-wrap:wrap;gap:40px;padding:80px 24px}
+.hero-text{max-width:560px}
+.hero-text h1{font-size:clamp(1.6rem,4vw,2.8rem);margin-bottom:14px}
+.typing{font-size:1.4rem;height:2rem;color:#00f0ff;animation:rgb 5s linear infinite}
+.cursor{animation:blink .8s steps(2) infinite}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+.tagline{margin:18px 0;opacity:.85}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.rgb-ring{width:300px;height:300px;border-radius:50%;padding:6px;
+  background:conic-gradient(#ff0080,#00f0ff,#a020f0,#ff0080);
+  animation:spin 4s linear infinite,float 4s ease-in-out infinite}
+.rgb-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;
+  border:4px solid #000}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -18px}}
+
+/* Sections */
+section{padding:80px 24px}
+.section-title{text-align:center;font-size:2.2rem;margin-bottom:40px}
+.skills-grid,.projects-grid,.contact-grid{display:grid;gap:24px;max-width:1100px;
+  margin:0 auto;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.skill .bar{height:10px;background:rgba(255,255,255,.1);border-radius:6px;
+  margin-top:14px;overflow:hidden}
+.skill .bar span{display:block;height:100%;width:var(--p);border-radius:6px;
+  background:linear-gradient(90deg,#ff0080,#00f0ff,#a020f0);
+  background-size:200%;animation:slide 3s linear infinite}
+.about-card{max-width:800px;margin:0 auto;line-height:1.9}
+.about-card p{margin-bottom:12px}
+.project.tilt{transition:transform .2s ease}
+.contact-card{text-align:center;font-size:1.1rem;text-decoration:none;color:#fff}
+
+/* Footer */
+footer{text-align:center;margin:40px;padding:40px}
+.footer-logo{width:60px;margin-bottom:14px;animation:rgb 4s linear infinite}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:.9s}
+.reveal.show{opacity:1;transform:none}
+
+/* Responsive */
+@media(max-width:600px){.rgb-ring{width:220px;height:220px}}
